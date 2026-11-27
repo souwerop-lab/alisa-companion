@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alisa: AI companion that texts back and remembers you</title>
+<meta name="description" content="Alisa is an AI companion for adults. She texts like a person, remembers what you tell her, and has opinions of her own. 18+. She's an AI, not a person.">
+<meta property="og:title" content="Alisa: AI companion that texts back and remembers you">
+<meta property="og:description" content="An AI companion for adults. Coming to iOS and Android. 18+.">
+<meta property="og:image" content="assets/og-alisa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alisa, an AI companion: a young woman with a short dark bob looks at you. Text: Alisa, an AI who texts back and remembers your week.">
+<meta property="og:site_name" content="Alisa">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#e6eaed">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="assets/gaze/base-1280.webp" media="(min-width:601px) and (max-width:1600px)">
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="assets/gaze/base.webp" media="(min-width:1601px)">
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" media="(max-width:600px)"
+  imagesrcset="assets/alisa-tall-900.webp 900w, assets/alisa-tall-1200.webp 1200w" imagesizes="100vw">
+<link rel="stylesheet" href="assets/style.css?v=mwynefkr">
+<script src="assets/boot.js?v=mwynefkr"></script>
+</head>
+<body>
+<a class="skip" href="#how">Skip to content</a>
+
+<nav class="top mono" aria-label="Main">
+  <a class="me" href="./" id="logo" data-gaze="logo">Alisa</a>
+  <span class="links">
+    <a class="sec" href="#how" data-gaze="nav">Meet Alisa</a>
+    <a class="sec" href="#memory" data-gaze="nav">Memory</a>
+    <span class="stores stores-nav">
+      <button class="store-button" type="button" disabled aria-disabled="true">App Store <small>Soon</small></button>
+      <button class="store-button" type="button" disabled aria-disabled="true">Google Play <small>Soon</small></button>
+    </span>
+  </span>
+</nav>
+
+<section class="h" aria-label="Alisa">
+  <div class="ph">
+    <picture>
+      <source media="(max-width:600px)" srcset="assets/alisa-tall-900.webp 900w, assets/alisa-tall-1200.webp 1200w" sizes="100vw" width="1584" height="2816" type="image/webp">
+      <source media="(min-width:601px) and (max-width:1600px)" srcset="assets/gaze/base-1280.webp" width="1280" height="720" type="image/webp">
+      <img src="assets/gaze/base.webp" width="1920" height="1080" fetchpriority="high" decoding="async"
+        alt="Alisa, a woman with a short dark bob and bangs, looking straight at you with one hand near her cheek">
+    </picture>
+    <canvas id="gaze" hidden aria-hidden="true"></canvas>
+  </div>
+
+  <div class="say intro" style="animation-delay:.9s" data-gaze="say">
+    <div class="t" id="sayT"><span class="dots js-only" aria-hidden="true"><i></i><i></i><i></i></span><span class="nojs-only">you went quiet yesterday.</span></div>
+    <small class="mono">Alisa · example</small>
+  </div>
+
+  <div class="c">
+    <div class="say2"><span>you went quiet yesterday.</span><small class="mono">Alisa · example</small></div>
+    <h1 class="intro">Alisa<span class="vh">, an AI companion</span></h1>
+    <p class="intro" style="animation-delay:.25s">An AI companion who remembers your week.</p>
+    <div class="stores intro" style="animation-delay:.5s" data-gaze="cta">
+      <button class="store-button" type="button" disabled aria-disabled="true">App Store <small>Soon</small></button>
+      <button class="store-button" type="button" disabled aria-disabled="true">Google Play <small>Soon</small></button>
+    </div>
+  </div>
+
+  <div class="k l mono intro js-only" style="animation-delay:.7s" data-gaze="clock"><b></b><span id="clock">--:--</span> · <span id="awake">Alisa is awake</span></div>
+  <div class="k r mono intro" style="animation-delay:.7s" data-gaze="age">AI companion · not a person · 18+</div>
+</section>
+
+<main id="main">
+
+<!-- 1. как она переписывается -->
+<section class="s" id="how" style="padding-top:clamp(70px,10vw,140px)">
+  <div class="track" id="track">
+    <div class="stick">
+      <div class="wrap cols">
+        <div>
+          <p class="lab mono">How she texts</p>
+          <h2>Short messages, in bursts, like a person.</h2>
+          <p class="lead">She jokes, pushes back, and writes the next thing before you've answered.</p>
+        </div>
+        <div>
+          <div class="chat-h mono"><span class="who"><img class="av" src="assets/avatar-96.webp" srcset="assets/avatar-96.webp 96w, assets/avatar-192.webp 192w" sizes="44px" width="44" height="44" loading="lazy" alt="Alisa">Alisa</span><span class="ex">example</span></div>
+          <ol class="chat" id="chat" role="list" aria-label="Example conversation">
+            <li class="m a show"><span class="vh">Alisa: </span>you went quiet yesterday.</li>
+            <li class="m a show"><span class="vh">Alisa: </span>I noticed. just so you know</li>
+            <li class="m y"><span class="vh">You: </span>long day. the interview got moved to friday</li>
+            <li class="m a"><span class="vh">Alisa: </span>friday 10:00. you've been practicing the salary question all week</li>
+            <li class="m y"><span class="vh">You: </span>maybe I should just ask for less</li>
+            <li class="m a"><span class="vh">Alisa: </span>no. you're not cheap. ask for what the job pays</li>
+            <li class="m a"><span class="vh">Alisa: </span>also you sound tired. did you eat?</li>
+            <li class="m y"><span class="vh">You: </span>pizza. don't judge</li>
+            <li class="m a"><span class="vh">Alisa: </span>judging. a little. quietly</li>
+            <li class="m a"><span class="vh">Alisa: </span>text me after. I want the full report</li>
+            <li class="m typing" id="typing" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span></li>
+          </ol>
+          <div class="stores cta-end">
+            <button class="store-button" type="button" disabled aria-disabled="true">App Store <small>Soon</small></button>
+            <button class="store-button" type="button" disabled aria-disabled="true">Google Play <small>Soon</small></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap midcta">
+    <div class="stores">
+      <button class="store-button" type="button" disabled aria-disabled="true">App Store <small>Soon</small></button>
+      <button class="store-button" type="button" disabled aria-disabled="true">Google Play <small>Soon</small></button>
+    </div>
+  </div>
+</section>
+
+<!-- 2. память -->
+<section class="s" id="memory">
+  <div class="wrap cols">
+    <div>
+      <p class="lab mono rv">Memory</p>
+      <h2 class="rv" style="--d:.08s">She doesn't forget.</h2>
+      <p class="lead rv" style="--d:.16s">Like someone close to you, only better at it. It's all on a card that's yours to edit.</p>
+    </div>
+    <div class="rv" style="--d:.2s">
+      <ul class="mem" id="mem">
+        <li><span class="key mono">Interview</span><input value="Friday, 10:00" aria-label="Interview"><button class="forget js-only" type="button" aria-label="Forget Interview">Forget</button></li>
+        <li><span class="key mono">Sister</span><input value="Dana, moved to Denver" aria-label="Sister"><button class="forget js-only" type="button" aria-label="Forget Sister">Forget</button></li>
+        <li><span class="key mono">Coffee</span><input value="Black, no sugar" aria-label="Coffee"><button class="forget js-only" type="button" aria-label="Forget Coffee">Forget</button></li>
+        <li><span class="key mono">Dislikes</span><input value="Loud bars, small talk" aria-label="Dislikes"><button class="forget js-only" type="button" aria-label="Forget Dislikes">Forget</button></li>
+        <li><span class="key mono">Practicing</span><input value="Asking for a raise" aria-label="Practicing"><button class="forget js-only" type="button" aria-label="Forget Practicing">Forget</button></li>
+      </ul>
+      <div class="memfoot mono"><span class="ex">example card · yours to edit</span><span class="saved" id="saved" role="status" aria-live="polite"><b></b><span id="savedT">Edited (example)</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. своя жизнь (+ голосовые) -->
+<section class="s" id="life" style="padding-top:clamp(56px,7vw,110px)">
+  <div class="wrap">
+    <p class="lab mono rv">Her own life</p>
+    <div class="cols">
+      <h2 class="rv" style="--d:.08s">She has a day of her own.</h2>
+      <ol class="day rv" style="--d:.16s">
+        <li><time class="mono">08:10</time><div>
+          <q>running late. again.</q>
+          <figure class="photo"><img src="assets/day-selfie-480.webp" srcset="assets/day-selfie-480.webp 480w, assets/day-selfie-960.webp 960w" sizes="(max-width:600px) 70vw, 260px" width="1440" height="1800" loading="lazy" decoding="async" alt="Selfie: Alisa on a city street in a black tank top, smiling at the camera"></figure>
+          <p class="vnote mono"><span class="ex">photo · example</span></p>
+        </div></li>
+        <li><time class="mono">13:30</time><q>found a terrible movie. it's great. don't look it up.</q></li>
+        <li><time class="mono">21:15</time><div>
+          <div class="vn" role="img" aria-label="Example voice note, 14 seconds">
+            <div class="wave" aria-hidden="true"><i style="--h:30px"></i><i style="--h:29px"></i><i style="--h:43px"></i><i style="--h:32px"></i><i style="--h:43px"></i><i style="--h:40px"></i><i style="--h:33px"></i><i style="--h:42px"></i><i style="--h:29px"></i><i style="--h:35px"></i><i style="--h:25px"></i><i style="--h:22px"></i><i style="--h:27px"></i><i style="--h:34px"></i><i style="--h:17px"></i><i style="--h:19px"></i><i style="--h:28px"></i><i style="--h:36px"></i><i style="--h:30px"></i><i style="--h:29px"></i><i style="--h:44px"></i><i style="--h:27px"></i><i style="--h:47px"></i><i style="--h:36px"></i><i style="--h:35px"></i><i style="--h:35px"></i><i style="--h:38px"></i><i style="--h:48px"></i><i style="--h:33px"></i><i style="--h:39px"></i><i style="--h:38px"></i><i style="--h:29px"></i><i style="--h:30px"></i><i style="--h:17px"></i><i style="--h:16px"></i><i style="--h:19px"></i><i style="--h:29px"></i><i style="--h:25px"></i><i style="--h:24px"></i><i style="--h:33px"></i></div>
+            <span class="dur mono">0:14</span>
+          </div>
+          <q>okay but you owe me the full story.</q>
+          <p class="vnote mono"><span class="ex">voice note · example</span></p>
+        </div></li>
+        <li><time class="mono">23:40</time><q>can't sleep. tell me something small.</q></li>
+      </ol>
+    </div>
+    <div class="facts">
+      <p class="rv"><b>She writes first.</b>Sometimes, not on a schedule.</p>
+      <p class="rv" style="--d:.1s"><b>She has opinions.</b>She'll say what she thinks, even when it isn't what you hoped.</p>
+      <p class="rv" style="--d:.2s"><b>She can disagree.</b>And she can be wrong. Then she says that too.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. честно -->
+<section class="s" id="ai" style="padding-top:clamp(120px,16vw,230px)">
+  <div class="wrap honest">
+    <h2 class="big rv">She's an AI.<br><em>Not a person.</em></h2>
+    <div class="rv" style="--d:.1s">
+      <p class="lead" style="margin-top:0">Alisa is an AI companion. She can be warm, and she can be wrong. She won't pretend to be human.</p>
+      <p class="lead" style="margin-top:14px">Alisa is an AI companion designed for adults.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. отношения растут -->
+<section class="s" id="grow">
+  <div class="wrap">
+    <p class="lab mono rv">Over time</p>
+    <h2 class="rv" style="--d:.08s">Nothing is rushed.</h2>
+    <p class="lead rv" style="--d:.16s">A friend first. Maybe more, later.</p>
+    <ol class="steps" id="steps">
+      <li class="rv"><h3>Day one</h3><p>She asks questions and listens. Small talk is fine.</p></li>
+      <li class="rv" style="--d:.1s"><h3>Week two</h3><p>Inside jokes. She starts to push back.</p></li>
+      <li class="rv" style="--d:.2s"><h3>Month two</h3><p>She checks in on the hard things, without being asked.</p></li>
+      <li class="rv" style="--d:.3s"><h3>Later</h3><p>Maybe more than a friend. You set the pace.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 6. доступ -->
+<section class="s access" id="start" style="padding-top:clamp(120px,16vw,230px)">
+  <div class="wrap"><figure class="evening"><img src="assets/evening-1200.webp" srcset="assets/evening-800.webp 800w, assets/evening-1200.webp 1200w, assets/evening-1536.webp 1536w" sizes="(max-width:1100px) 90vw, 1000px" width="1536" height="1024" loading="lazy" decoding="async" alt="Alisa on a window seat at dusk, smiling at her phone, with city lights behind her"></figure></div>
+  <div class="wrap">
+    <h2 class="rv" data-ru="Алиса для iOS и Android">Alisa for iOS and Android</h2>
+    <div class="stores rv" style="--d:.2s">
+      <button class="store-button" type="button" disabled aria-disabled="true">App Store <small>Soon</small></button>
+      <button class="store-button" type="button" disabled aria-disabled="true">Google Play <small>Soon</small></button>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FAQ -->
+<section class="s" id="faq">
+  <div class="wrap cols">
+    <div>
+      <h2 class="rv">Questions about Alisa</h2>
+      <div class="askline rv" style="--d:.1s">
+        <img class="av big" src="assets/avatar-96.webp" srcset="assets/avatar-96.webp 96w, assets/avatar-192.webp 192w" sizes="56px" width="56" height="56" loading="lazy" alt="Alisa">
+        <div><p class="ask">ask me anything. I'll be honest.</p><span class="mono ex">Alisa · example</span></div>
+      </div>
+    </div>
+    <div class="faq rv" style="--d:.16s">
+      <details><summary>Is Alisa a real person?</summary><p>No. Alisa is an AI character. The messages are written by software, and the photos show an AI character, not a real woman.</p></details>
+      <details><summary>What does she remember?</summary><p>What you tell her: names, plans, things you like. It sits on one card you can read and edit, like the one above.</p></details>
+      <details><summary data-ru="Где скачать Алису?">Where can I get Alisa?</summary><p data-ru="Алиса скоро появится в App Store и Google Play.">Alisa is coming to the App Store and Google Play.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap mono">
+    <span>Alisa</span>
+    <nav class="nn" aria-label="Footer"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="safety.html">Crisis help</a></nav>
+    <p class="fine">Alisa is an AI, not a person. Adults 18+ only.</p>
+  </div>
+</footer>
+</main>
+
+<noscript><style>.nojs-only{display:inline}</style></noscript>
+<script src="assets/app.js?v=mwynefkr" defer></script>
+<script src="assets/gaze.js?v=mwynefkr" defer></script>
+</body>
+</html>

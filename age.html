@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alisa: confirm your age</title>
+<meta name="description" content="Alisa is for adults. Confirm that you are 18 or older.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#e6eaed">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css?v=mwynefkr">
+<link rel="stylesheet" href="assets/chat.css?v=mwynefkr">
+</head>
+<body class="page">
+<header class="mono"><a href="index.html">Alisa</a><span>AI companion · 18+</span></header>
+<main class="core" id="main">
+<div class="box">
+  <img class="age-alisa" src="assets/alisa-tall-900.webp" width="64" height="64" alt="">
+  <h1>Alisa is for adults.</h1>
+  <div id="agebox">
+  <p>Alisa is an AI, not a person, and the chat is for adults only. Enter your birth month and year. We don't store it.</p>
+  <p>By continuing you accept the <a href="terms.html">Terms</a>. See <a href="privacy.html">Privacy</a> for how the chat handles data.</p>
+  <form class="agef" id="agef" novalidate>
+    <label class="mono" for="bm">Month<select id="bm" aria-describedby="msg" required autofocus><option value="">Month</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></label>
+    <label class="mono" for="by">Year<input id="by" aria-describedby="msg" type="number" inputmode="numeric" min="1900" max="2026" placeholder="Year" required></label>
+    <button class="cta" id="yes" type="submit">Continue to Alisa</button>
+  </form>
+  </div>
+  <p class="age-minors">AI companion chatbots may not be suitable for some minors.</p>
+  <p class="msg" id="msg" role="status"></p>
+</div>
+</main>
+<script src="assets/age.js?v=mwynefkr" defer></script>
+</body></html>

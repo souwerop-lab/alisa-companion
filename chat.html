@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Chat with Alisa</title>
+<meta name="description" content="Chat with Alisa, an AI companion for adults.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#e6eaed">
+<meta name="alisa-api" content="/api">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css?v=mwynefkr">
+<link rel="stylesheet" href="assets/chat.css?v=mwynefkr">
+<script src="assets/chat-entry.js?v=mwynefkr" data-gate="assets/gate.js" data-motion="assets/chat-motion.js" data-chat="assets/chat.js" defer></script>
+</head>
+<body class="chat-page">
+<main class="chat-unavailable" id="chat-unavailable">
+  <h1 data-chat-text="unavailable">Chat will be back soon</h1>
+  <nav>
+    <a href="index.html" data-chat-text="backHome">Back to Alisa</a>
+    <a href="privacy.html#data-controls" data-chat-text="dataPolicy">Data controls</a>
+  </nav>
+  <button type="button" class="chat-settings-action" id="chat-data-open" aria-haspopup="dialog" aria-controls="chat-settings" data-chat-text="manageData" hidden>Manage my data</button>
+</main>
+<div class="chat-viewport" id="chat-viewport" hidden>
+  <div class="chat-shell">
+    <div class="chat-stage">
+      <div class="chat-avatar" id="chat-avatar" aria-hidden="true">
+        <img src="assets/reactions/waist-poster.webp"
+          srcset="assets/reactions/waist-poster-360.webp 360w, assets/reactions/waist-poster.webp 720w"
+          sizes="(min-width: 900px) min(56.25dvh, calc(100vw - 380px), 820px), min(39.6dvh, 100vw)"
+          width="720" height="1280" alt="">
+        <video preload="none" muted playsinline></video>
+        <video preload="none" muted playsinline></video>
+      </div>
+      <button type="button" id="chat-stage-play" class="chat-stage-play" data-chat-text="playVideo" hidden>Play video</button>
+    </div>
+    <main class="chat-main">
+      <header class="chat-header">
+        <img class="chat-header-avatar" src="assets/reactions/anchor-portrait-360.webp" width="40" height="40" alt="">
+        <div class="chat-identity">
+          <h1><a class="chat-home" href="index.html" aria-label="Alisa home" data-chat-label="home" data-chat-text="name">Alisa</a></h1>
+          <p data-chat-text="subtitle">AI companion · not a person</p>
+        </div>
+        <button type="button" id="chat-settings-open" class="chat-settings-icon" aria-label="Settings"
+          aria-haspopup="dialog" aria-controls="chat-settings" data-chat-label="settings"><span aria-hidden="true">⋯</span></button>
+      </header>
+      <p class="chat-debug" id="chat-preview" data-chat-text="preview" hidden>Preview · simulated replies</p>
+      <div id="chat-debug" class="chat-debug" hidden>
+        <select id="chat-debug-clip" data-chat-label="videoDebug" aria-label="Video debug"></select>
+        <button type="button" id="chat-debug-play" data-chat-text="playVideo">Play video</button>
+        <label><input type="checkbox" id="chat-debug-instant" checked> <span data-chat-text="instant">Play immediately</span></label>
+      </div>
+      <div class="chat-scroll" id="chat-scroll" tabindex="0" role="region" aria-label="Conversation" data-chat-label="conversation">
+        <div class="chat-stream">
+          <div class="chat-intro" id="chat-intro">
+            <p class="chat-intro-title" id="chat-intro-title" data-chat-text="welcome">Say hello.</p>
+            <p class="chat-minors" data-chat-text="minors">AI companion chatbots may not be suitable for some minors.</p>
+          </div>
+          <div class="chat-log" id="chat-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="Messages" data-chat-label="messages"></div>
+        </div>
+      </div>
+      <div class="chat-compose">
+        <div class="chat-error" id="chat-error" hidden>
+          <p role="alert" id="chat-error-text"></p>
+          <button type="button" id="chat-retry" data-chat-text="retry">Try again</button>
+        </div>
+        <p class="chat-status" id="chat-status" role="status" aria-atomic="true">
+          <span id="chat-typing-bars" class="chat-typing-bars" aria-hidden="true" hidden><i></i><i></i><i></i></span>
+          <span id="chat-status-text"></span>
+        </p>
+        <p class="chat-voice-note" id="chat-voice-note" role="status" hidden></p>
+        <div id="chat-emoji-picker" class="chat-emoji-picker" hidden></div>
+        <div id="chat-recording" class="chat-recording" hidden>
+          <button type="button" id="chat-record-cancel" data-chat-text="cancel">Cancel</button>
+          <output id="chat-record-time">0:00</output>
+          <button type="button" id="chat-record-send" data-chat-text="send">Send</button>
+        </div>
+        <form id="chat-form" class="chat-form">
+          <button type="button" class="chat-compose-button" id="chat-emoji" data-chat-label="stickers" aria-label="Stickers" aria-controls="chat-emoji-picker" aria-expanded="false"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M8.5 14a4 4 0 0 0 7 0M9.5 9.5h.01m5 0h.01"/></svg></button>
+          <label for="chat-input" class="vh" data-chat-text="message">Message</label>
+          <textarea id="chat-input" rows="1" maxlength="2000" enterkeyhint="send" placeholder="Message…" data-chat-placeholder="placeholder"></textarea>
+          <button type="button" class="chat-compose-button" id="chat-mic" data-chat-label="dictate" aria-label="Dictate"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M6 11v1a6 6 0 0 0 12 0v-1m-6 7v3m-3 0h6"/></svg></button>
+          <button class="chat-send" id="chat-send" type="submit" data-chat-label="send" aria-label="Send" hidden disabled><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button>
+        </form>
+      </div>
+    </main>
+  </div>
+  <dialog id="chat-settings" class="chat-settings" aria-labelledby="chat-settings-title">
+    <div class="chat-settings-head">
+      <h2 id="chat-settings-title" data-chat-text="settings">Settings</h2>
+      <button type="button" id="chat-settings-close" class="chat-settings-icon" aria-label="Close settings"
+        data-chat-label="closeSettings" autofocus><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="chat-settings-body">
+      <div class="chat-settings-row" data-chat-only>
+        <span id="chat-language-label" data-chat-text="language">Language</span>
+        <div class="chat-languages" role="group" aria-labelledby="chat-language-label">
+          <button type="button" lang="en" data-chat-lang="en" aria-pressed="true">English</button>
+          <button type="button" lang="ru" data-chat-lang="ru" aria-pressed="false">Русский</button>
+        </div>
+      </div>
+      <label class="chat-settings-row" data-chat-only><span data-chat-text="initiates">Messages first</span>
+        <input type="checkbox" id="chat-initiates" role="switch" checked>
+      </label>
+      <label class="chat-settings-row" data-chat-only><span data-chat-text="sound">Message sound</span>
+        <input type="checkbox" id="chat-sound" role="switch">
+      </label>
+      <label class="chat-settings-row" data-chat-only><span data-chat-text="video">Video reactions</span>
+        <input type="checkbox" id="chat-video" role="switch" checked>
+      </label>
+
+      <section class="chat-settings-memory" aria-labelledby="chat-memory-title" id="chat-memory">
+        <h3 id="chat-memory-title" data-chat-text="memoryTitle">What Alisa remembers about me</h3>
+        <form id="chat-name-form">
+          <label for="chat-user-name" data-chat-text="userName">What Alisa calls you</label>
+          <div class="chat-settings-name">
+            <input type="text" id="chat-user-name" autocomplete="nickname" maxlength="80" aria-describedby="chat-name-hint" disabled>
+            <button type="submit" id="chat-name-save" class="chat-settings-action" data-chat-text="save" disabled>Save</button>
+          </div>
+          <p id="chat-name-hint" class="chat-settings-hint" data-chat-text="nameHint">Up to 40 characters. Leave it blank and Alisa can learn your name in chat.</p>
+        </form>
+        <p id="chat-memory-status" class="chat-settings-hint" role="status"></p>
+        <button type="button" id="chat-memory-retry" class="chat-settings-action" data-chat-text="retry" hidden>Try again</button>
+        <ul id="chat-memory-list" class="chat-memory-list" hidden></ul>
+        <button type="button" id="chat-download" class="chat-settings-action" data-chat-text="downloadData">Download my data</button>
+      </section>
+
+      <details class="chat-settings-display" data-chat-only>
+        <summary data-chat-text="appearance">Appearance</summary>
+        <div class="chat-settings-row">
+          <span id="chat-theme-label" data-chat-text="theme">Theme</span>
+          <div id="chat-theme" class="chat-languages" role="group" aria-labelledby="chat-theme-label">
+            <button type="button" data-theme-choice="auto" data-chat-text="auto" aria-pressed="true">Auto</button>
+            <button type="button" data-theme-choice="light" data-chat-text="light" aria-pressed="false">Light</button>
+            <button type="button" data-theme-choice="dark" data-chat-text="dark" aria-pressed="false">Dark</button>
+          </div>
+        </div>
+        <label class="chat-settings-row"><span data-chat-text="opacity">Message opacity</span>
+          <input id="chat-opacity" type="range" min="0" max="100">
+        </label>
+        <label class="chat-settings-row" id="chat-model-field" hidden><span data-chat-text="model">Model</span>
+          <select id="chat-model"></select>
+        </label>
+        <button type="button" class="chat-settings-action" id="chat-model-retry" data-chat-text="modelRetry" hidden>Reload models</button>
+      </details>
+      <button type="button" class="chat-settings-action" id="chat-debug-toggle" data-chat-text="videoDebug"
+        aria-expanded="false" aria-controls="chat-debug" hidden>Video debug</button>
+
+      <div class="chat-settings-links" data-chat-only>
+        <a href="terms.html" data-chat-text="terms">Terms</a>
+        <a href="privacy.html" data-chat-text="privacy">Privacy</a>
+        <a href="safety.html" data-chat-text="crisisHelp">Crisis help</a>
+      </div>
+      <p class="chat-settings-hint chat-settings-minors" data-chat-text="minors" data-chat-only>AI companion chatbots may not be suitable for some minors.</p>
+      <div class="chat-settings-danger">
+        <button type="button" id="chat-clear" data-chat-text="clear" data-chat-only>Clear chat</button>
+        <button type="button" id="chat-forget-all" data-chat-text="forgetAll" aria-describedby="chat-memory-status" disabled>Forget everything</button>
+      </div>
+    </div>
+  </dialog>
+</div>
+</body>
+</html>

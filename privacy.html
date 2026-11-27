@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alisa: Privacy</title>
+<meta name="description" content="How the Alisa web chat handles data.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#e6eaed">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css?v=mwynefkr">
+</head>
+<body class="page">
+<header class="mono"><a href="index.html">Alisa</a><span>AI companion · 18+</span></header>
+<main class="doc" id="main">
+<h1>Privacy</h1>
+<p>Updated November 27, 2026.</p>
+<h2>1. Who handles your data</h2>
+<p>The operator of the Alisa web chat runs the service and manages its storage. The chat uses browser sessions without a sign-in. See <a href="#data-controls">Your data controls</a> for options with your current session and what happens if you lose its cookie.</p>
+<h2>2. What the chat stores</h2>
+<ul>
+<li>The server keeps chat exchanges with timestamps, replies, language, model and time zone. It may retain summaries, model output and diagnostic details related to an exchange.</li>
+<li>Alisa's memory includes your preferred name, saved facts, interests, conversation notes and summaries. It can also contain excerpts from recent chats.</li>
+<li>Your browser stores recent chats and preferences, including language, optional dictation acknowledgment and the time of the last AI reminder. A signed <code>aid</code> cookie connects this browser to its server data.</li>
+<li>Vercel supplies an IP address and approximate country. The country selects crisis resources. The service uses keyed hashes of IP addresses and browser session identifiers for request limits. It also keeps a daily request count for the whole site.</li>
+</ul>
+<h2>3. How we use it</h2>
+<p>We process messages to reply, keep context across visits and apply safety checks. Request counts help limit abuse. When the server identifies a possible crisis it writes an operational event without the message or a user identifier. If only the browser detects a possible crisis, the browser can show help without creating that server event. The exchange may still appear in the stored chat history.</p>
+<p>Messages can reveal health, sexual orientation or other private information. Avoid sending sensitive information or private details about other people.</p>
+<h2>4. Service providers</h2>
+<p>Vercel runs the web service and Upstash Redis stores server-side data. OpenRouter sends text, chat context and relevant memory to model providers. Chat replies use models from Anthropic, DeepSeek or Mistral AI. Supporting tasks can use other models, including TypeSafe for safety checks and OpenAI for memory search. Providers may process this data outside your country, including in the United States.</p>
+<p>Some providers may retain model inputs and outputs or use them to improve models. This depends on the OpenRouter settings for the service, the route and the policy of the provider that receives the request. The chat does not set a zero-retention or data collection restriction in each request to OpenRouter. See <a href="https://openrouter.ai/privacy">OpenRouter's privacy policy</a> for details.</p>
+<p>If you choose dictation, your browser may send audio to its speech recognition provider, such as Google in Chrome or Apple in Safari. Alisa receives the transcribed text when you send it. You can type instead.</p>
+<h2>5. Retention</h2>
+<p>The chat log holds up to 500 exchanges. By default, older exchanges are trimmed after 90 days when new exchanges are written, and the log expires 90 days after its last write. The operator can configure the log retention period. Saved memory stays on the server until it is deleted. The browser cookie lasts one year. Local history and settings remain until cleared. Request counters expire at the end of their minute or UTC day.</p>
+<p>Vercel keeps crisis events in its runtime logs. The retention period depends on the <a href="https://vercel.com/docs/logs/runtime#limits">hosting plan</a>. On Vercel Hobby, runtime logs are kept for one hour.</p>
+<h2 id="data-controls">6. Your data controls</h2>
+<p>While the web chat is temporarily unavailable, open <strong>Manage my data</strong> on the chat's temporary screen to use these controls.</p>
+<ul>
+<li>In Settings, change your preferred name or delete individual facts from Alisa's memory.</li>
+<li><strong>Download my data</strong> saves a JSON file with server memory, the stored chat log within its retention window, and the history on this browser.</li>
+<li><strong>Forget everything</strong> deletes the server memory and chat log for this browser session, expires its session cookie and clears its local chat history. You can use it to delete a conversation even when the facts list is empty. <strong>Clear chat</strong> clears local chat history alone. These controls apply to the Alisa service. Providers can have their own retention rules.</li>
+</ul>
+<p>Use Settings to download or delete data while this browser still has its session cookie. If the cookie is lost or expires, the chat cannot reconnect this browser to the old session. The old chat log expires under the retention policy above. Saved memory has no automatic expiration.</p>
+<p>For a request about an old session, a saved fact ID and the approximate time of a past exchange from a previous download can help locate the session. Keep your cookie and full chat history private. The operator needs to verify the link to the session before releasing or deleting its data. If the link cannot be verified, the operator will explain the reason where possible.</p>
+<p>For requests covered by EU data protection law, the operator responds without undue delay and within one month of receipt. If an extension is needed, the operator will explain why within that first month. An extension can be up to two additional months.</p>
+<p>Depending on where you live, you may have additional rights to access, correct, delete or restrict use of personal data, to receive a copy, to object to processing and to lodge a complaint with your privacy regulator.</p>
+<h2>7. Age</h2>
+<p>The web chat is intended for adults 18 and older. The browser checks the birth month and year you enter and saves the result or the time of a temporary block. It does not save or send your date of birth.</p>
+<p><a href="terms.html">Terms</a> · <a href="index.html">Back to Alisa</a></p>
+</main>
+</body>
+</html>
